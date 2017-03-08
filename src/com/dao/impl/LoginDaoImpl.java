@@ -31,8 +31,10 @@ public class LoginDaoImpl implements LoginDao {
             Query query = session.createQuery(sql);
             query.setParameter(0, user.getUsername());
             query.setParameter(1,user.getPassword());
+            int len = ((Number)query.uniqueResult()).intValue();
             transaction.commit();
-            if((1 == query.uniqueResult())){
+
+            if(len==1){
                 return "success";
             }
         }catch (Exception e){

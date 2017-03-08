@@ -15,19 +15,19 @@ import javax.annotation.Resource;
  * Created by LinXu on 2017/3/8.
  */
 @Controller @Scope("prototype")
-public class LoginAction extends ActionSupport implements ModelDriven<User>{
-    @Resource(name = "userbiz")
+public class LoginAction extends ActionSupport implements ModelDriven{
+    @Resource(name = "userBiz")
     private UserBiz userBiz;
 
-    public UserBiz getUserBiz() {
-        return userBiz;
-    }
-    private User user;
+    private User user = new User();
 
-    @Action(value = "login",results = {@Result(name = "success",location = "/success.jsp"),
+    @Action(value = "/login",results = {@Result(name = "success",location = "/success.jsp"),
         @Result(name = "error",location = "/error.jsp")})
     public String login(){
-        return userBiz.login(user);
+        System.out.println(user.getUsername());
+
+            return userBiz.login(user);
+
     }
 
     @Override

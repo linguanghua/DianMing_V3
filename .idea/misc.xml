@@ -13,6 +13,10 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
+  <component name="ProjectResources">
+    <resource url="http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" location="$PROJECT_DIR$/web/WEB-INF/lib/spring-beans-4.3.6.RELEASE.jar!/org/springframework/beans/factory/xml/spring-beans-3.1.xsd" />
+    <resource url="http://www.springframework.org/schema/tool/spring-tool-3.1.xsd" location="$PROJECT_DIR$/web/WEB-INF/lib/spring-beans-4.3.6.RELEASE.jar!/org/springframework/beans/factory/xml/spring-tool-3.1.xsd" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

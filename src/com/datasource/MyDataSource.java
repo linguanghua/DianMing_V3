@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class MyDataSource extends BasicDataSource {
     @Override
     public synchronized void close() throws SQLException {
-        DriverManager.deregisterDriver(DriverManager.getDriver("jdbc:mysql://localhost:3306/hibernate"));
+        DriverManager.deregisterDriver(DriverManager.getDriver("jdbc:mysql://localhost:3306/dianming"));
         super.close();
     }
 
