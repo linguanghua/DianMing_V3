@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - dianming@localhost" uuid="eb120351-e7b5-4938-b126-1ae92a232198">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+    <database-info product="MySQL" version="5.0.51b-community-nt-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="dianming"/>
+    <table name="class" schema="" catalog="dianming" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="aWQ=" autoIncrement="true"/>
+      <column name="classId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="6K++56iL5Y+3"/>
+      <column name="classNum" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" def="JzAn" remarks="6K++5aCC57yW5Y+3"/>
+      <column name="className" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" remarks="6K++56iL5ZCN56ew"/>
+      <column name="studentNum" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5a2m55Sf5pWw6YeP"/>
+      <column name="week" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5pif5pyf"/>
+      <column name="classRoom" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" remarks="5pWZ5a6k"/>
+      <column name="classTime" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12" def="JzA4OjAwJw==" remarks="5LiK6K++5pe26Ze0"/>
+      <column name="lesson" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="56ys5Yeg6IqC"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="selectlesson" schema="" catalog="dianming" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userId" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="55So5oi3SUQ="/>
+      <column name="classId" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="6K++5aCCSUQ="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="signstatus" schema="" catalog="dianming" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="stuId" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12" remarks="5a2m55Sf"/>
+      <column name="classId" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12" remarks="6K++5aCC"/>
+      <column name="day" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sign" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="lesson" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="56ys5Yeg6IqC"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="user" schema="" catalog="dianming" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="55So5oi357yW5Y+3" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12" remarks="55So5oi35ZCN"/>
+      <column name="password" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12" def="JzEyMzQ1Nic=" remarks="5a+G56CB"/>
+      <column name="userType" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="55So5oi357G75Z6L"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="5ZCN5a2X"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
   </data-source>
 </component>
