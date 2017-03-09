@@ -7,6 +7,9 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/dianming</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <mapping class="com.entity.User"/>
+    <mapping class="com.entity.ClazzEntity"/>
+    <mapping class="com.entity.Selectlesson"/>
+    <mapping class="com.entity.Signstatus"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

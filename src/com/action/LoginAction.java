@@ -24,10 +24,12 @@ public class LoginAction extends ActionSupport implements ModelDriven{
     @Action(value = "/login",results = {@Result(name = "success",location = "/success.jsp"),
         @Result(name = "error",location = "/error.jsp")})
     public String login(){
-        System.out.println(user.getUsername());
 
-            return userBiz.login(user);
-
+        if(userBiz.login(user)){
+            return SUCCESS;
+        }else {
+            return ERROR;
+        }
     }
 
     @Override
