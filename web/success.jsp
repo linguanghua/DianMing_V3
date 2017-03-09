@@ -136,8 +136,8 @@
         <li>
             <div class="userView">
                 <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-                <a href="#!name"><span class="white-text name">${name}</span></a>
-                <a href="#!email"><span class="white-text email" id="user">${username}</span></a>
+                <a href="#!name"><span class="white-text name">${user.name}</span></a>
+                <a href="#!email"><span class="white-text email" id="user">${user.username}</span></a>
             </div>
         </li>
         <li class="bold"><a id="myClass" href="#" class="waves-effect waves-teal"><i class="material-icons">info</i>我的课程</a>
@@ -146,7 +146,7 @@
                 class="material-icons">mode_edit</i>签到情况</a></li>
         <li class="bold"><a href="#modal1" class="waves-effect waves-teal modal-trigger"><i class="material-icons">settings_applications</i>修改密码</a>
         </li>
-        <li class="bold"><a id="loginout" href="#" class="waves-effect waves-teal"><i class="material-icons">power_settings_new</i>退出</a>
+        <li class="bold"><a  href="logout?action=logout" class="waves-effect waves-teal"><i class="material-icons">power_settings_new</i>退出</a>
         </li>
     </ul>
 </header>
@@ -193,7 +193,7 @@
     <div class="row" style="width: 95%;display: none" id="signInfoDiv">
         <div class="section scrollspy">
             <h3 class="header">签到情况</h3>
-                    <div class='row' style="display:${type==0?'block':'none'};">
+                    <div class='row' style="display:${user.userType==0?'block':'none'};">
                         <div class='col s12'>
                             <table class='bordered'>
                                 <thead>
@@ -227,23 +227,42 @@
                         </div>
                     </div>
 
-                    <div class='row' style="display:${type==0?'none':'block'};">
+                    <div class='row' style="display:${user.userType==0?'none':'block'};">
                         <div class='col s12'>
-                            <table class='bordered'>
-                                <thead>
-                                <tr>
-                                    <th data-field='id'>日期</th>
-                                    <th data-field='id'>星期</th>
-                                    <th data-field='name'>学号</th>
-                                    <th data-field='name'>姓名</th>
-                                    <th data-field='name'>节号</th>
-                                    <th data-field='price'>签到情况</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <s:iterator value="#session.taeSignInfo" id="item">
+                                <h5><s:property value="#item.className" /></h5>
+                                <table class='bordered'>
+                                    <thead>
+                                    <tr>
+                                        <th data-field='id'>日期</th>
+                                        <th data-field='id'>星期</th>
+                                        <th data-field='name'>学号</th>
+                                        <th data-field='name'>姓名</th>
+                                        <th data-field='name'>节号</th>
+                                        <th data-field='price'>签到情况</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <s:iterator value="#item.list" id="v">
+                                            <tr>
+                                                <td><s:property value="#v.day" /></td>
+                                                <td><s:property value="#v.week" /></td>
+                                                <td><s:property value="#v.stuName" /></td>
+                                                <td><s:property value="#v.stuId" /></td>
+                                                <td><s:property value="#v.lesson" /></td>
+                                                <s:if test="#v.sign==1">
+                                                    <td style='background:#00e676'>已签到</td>
+                                                </s:if>
+                                                <s:else>
+                                                    <td style='background:#d50000'>未签到</td>
+                                                </s:else>
 
-                                </tbody>
-                            </table>
+                                            </tr>
+                                        </s:iterator>
+
+                                    </tbody>
+                                </table>
+                            </s:iterator>
                         </div>
                     </div>
 
@@ -306,13 +325,12 @@
             var psssword = $("#password").val();
             if (nPsw != "" && psssword != "" && nPsw == psssword) {
 
-                $.post("servlet/AppServlet",
+                $.post("changPwdAction",
                         {
-                            action: "changePsw",
-                            psw: nPsw
+                            pwd: nPsw
                         },
                         function (data, status) {
-                            if ((data == "true") && (status == "success")) {
+                            if ((data.b == true) && (status == "success")) {
                                 alert("密码设置成功");
                             } else {
                                 alert("密码设置失败");
@@ -322,18 +340,6 @@
                 alert("两次密码不一致或密码无效");
             }
 
-        });
-        $("#loginout").click(function () {
-            $.post("servlet/AppServlet",
-                    {
-                        action: "loginOut",
-                    },
-                    function (data, status) {
-                        if ((data == "success") && (status == "success")) {
-                            window.location.reload();
-                            window.location.href = "login.html";
-                        }
-                    });
         });
     });
 

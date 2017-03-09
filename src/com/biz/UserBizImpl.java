@@ -2,9 +2,7 @@ package com.biz;
 
 import com.dao.LoginDao;
 import com.dao.SignInfoDao;
-import com.entity.ClazzEntity;
-import com.entity.StuSignInfo;
-import com.entity.User;
+import com.entity.*;
 import com.opensymphony.xwork2.ActionContext;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +32,9 @@ public class UserBizImpl implements UserBiz {
     @Override
     public boolean login(User user) {
         List<User> ulist = loginDao.login(user);
+        Map<String, Object> session = ActionContext.getContext().getSession();
         if(ulist.size()==1) {
+            session.put("user",ulist.get(0));
             setDatas(ulist.get(0));
             setSignData(ulist.get(0));
             return true;
@@ -45,11 +45,7 @@ public class UserBizImpl implements UserBiz {
 
     @Override
     public void setDatas(User user) {
-        int type = user.getUserType();
         Map<String, Object> session = ActionContext.getContext().getSession();
-        session.put("username", user.getUsername());
-        session.put("name", user.getName());
-        session.put("type", type);
         List<ClazzEntity> list = loginDao.getClasses(user);
         if (list != null) {
             String classes[][]=  formatData(list);
@@ -62,21 +58,21 @@ public class UserBizImpl implements UserBiz {
         Map<String, Object> session = ActionContext.getContext().getSession();
         if(user.getUserType()==0){
             List<StuSignInfo> list = signInfoDao.getStuSignData(user);
-            session.put("stuSign",false);
             if(list!=null){
-                session.put("stuSign",true);
                 session.put("stuSignInfo",list);
             }
+        }if(user.getUserType()==1){
+            List<Integer> list = signInfoDao.getTClassId(user);
+            List<DataList> lists = new ArrayList<DataList>();
+            for ( Integer i:list
+                 ) {
+                List<TeaSignInfo> tlist = signInfoDao.getTeaSignInfo(i);
+                DataList dlist = new DataList(tlist.get(0).getClassName(),tlist);
+                lists.add(dlist);
+            }
+            session.put("taeSignInfo",lists);
         }
-    }
 
-    private void getSignData(int type){
-        if(type==0){
-
-        }
-        else if(type==1){
-
-        }
     }
 
     private String[][] formatData(List<ClazzEntity> clist){

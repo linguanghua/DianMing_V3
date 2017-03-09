@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Signstatus {
     private int id;
     private String stuId;
-    private String classId;
+    private int classId;
     private String day;
     private int sign;
     private int lesson;
@@ -39,11 +39,11 @@ public class Signstatus {
 
     @Basic
     @Column(name = "classId")
-    public String getClassId() {
+    public int getClassId() {
         return classId;
     }
 
-    public void setClassId(String classId) {
+    public void setClassId(int classId) {
         this.classId = classId;
     }
 
@@ -85,10 +85,10 @@ public class Signstatus {
         Signstatus that = (Signstatus) o;
 
         if (id != that.id) return false;
+        if (classId != that.classId) return false;
         if (sign != that.sign) return false;
         if (lesson != that.lesson) return false;
         if (stuId != null ? !stuId.equals(that.stuId) : that.stuId != null) return false;
-        if (classId != null ? !classId.equals(that.classId) : that.classId != null) return false;
         if (day != null ? !day.equals(that.day) : that.day != null) return false;
 
         return true;
@@ -98,7 +98,7 @@ public class Signstatus {
     public int hashCode() {
         int result = id;
         result = 31 * result + (stuId != null ? stuId.hashCode() : 0);
-        result = 31 * result + (classId != null ? classId.hashCode() : 0);
+        result = 31 * result + classId;
         result = 31 * result + (day != null ? day.hashCode() : 0);
         result = 31 * result + sign;
         result = 31 * result + lesson;

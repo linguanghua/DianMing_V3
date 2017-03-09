@@ -6,13 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by LinXu on 2017/3/8.
+ * Created by LinXu on 2017/3/9.
  */
 @Entity
 public class Selectlesson {
     private int id;
     private String userId;
-    private String classId;
+    private int classId;
 
     @Id
     @Column(name = "id")
@@ -36,11 +36,11 @@ public class Selectlesson {
 
     @Basic
     @Column(name = "classId")
-    public String getClassId() {
+    public int getClassId() {
         return classId;
     }
 
-    public void setClassId(String classId) {
+    public void setClassId(int classId) {
         this.classId = classId;
     }
 
@@ -52,8 +52,8 @@ public class Selectlesson {
         Selectlesson that = (Selectlesson) o;
 
         if (id != that.id) return false;
+        if (classId != that.classId) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (classId != null ? !classId.equals(that.classId) : that.classId != null) return false;
 
         return true;
     }
@@ -62,7 +62,7 @@ public class Selectlesson {
     public int hashCode() {
         int result = id;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (classId != null ? classId.hashCode() : 0);
+        result = 31 * result + classId;
         return result;
     }
 }
