@@ -35,8 +35,6 @@ public class UserBizImpl implements UserBiz {
         Map<String, Object> session = ActionContext.getContext().getSession();
         if(ulist.size()==1) {
             session.put("user",ulist.get(0));
-            setDatas(ulist.get(0));
-            setSignData(ulist.get(0));
             return true;
         }else {
             return false;

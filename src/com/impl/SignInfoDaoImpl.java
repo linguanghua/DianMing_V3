@@ -64,11 +64,6 @@ public class SignInfoDaoImpl implements SignInfoDao {
             query.setParameter(2, classId);
             list = query.list();
             transaction.commit();
-            for (TeaSignInfo t: list
-                    ) {
-                System.out.println(t.getClassName()+" "+t.getStuName());
-            }
-            System.out.println(list.size());
         }catch (Exception e){
             e.printStackTrace();
             transaction.rollback();
